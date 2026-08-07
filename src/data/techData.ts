@@ -27,6 +27,8 @@ export interface RefurbishedItem {
   price: number;
   originalPrice: number;
   image: string;
+  galleryImages: string[];
+  cosmeticNotes: string;
   badge?: string;
   inStock: boolean;
   warranty: string;
@@ -201,18 +203,24 @@ export const REFURBISHED_STORE: RefurbishedItem[] = [
     category: 'macbook',
     specs: 'M2 Pro (10-core CPU / 16-core GPU) • Space Grijs • QWERTY',
     conditionGrade: 'A+',
-    conditionText: 'Zo goed als nieuw, krasvrij scherm & behuizing',
+    conditionText: 'Zo goed als nieuw, 100% krasvrij retina display & topcase',
     batteryHealth: '98% Batterijconditie (Slechts 42 laadcycli)',
     price: 1390,
     originalPrice: 2449,
     image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
+    galleryImages: [
+      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=800&q=80',
+    ],
+    cosmeticNotes: '🔍 Cosmetische Staat: A+ Grade. Geen enkele beschadiging of kras op het scherm of de behuizing.',
     badge: '💎 TOPDEAL',
     inStock: true,
     warranty: '6 Maanden Volledige Garantie',
     features: [
       '14-punts inspectie door gecertificeerde technicus',
-      'Inclusief originele Apple 67W MagSafe 3 Oplader',
-      'Direct op te halen bij TU/e of gratis aangetekende PostNL verzending',
+      'Inclusief originele Apple 67W MagSafe 3 Oplader & Kabel',
+      'Direct op te halen bij TU/e trefpunt of gratis PostNL verzending',
     ],
   },
   {
@@ -225,6 +233,11 @@ export const REFURBISHED_STORE: RefurbishedItem[] = [
     price: 920,
     originalPrice: 1499,
     image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80',
+    galleryImages: [
+      'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=800&q=80',
+    ],
+    cosmeticNotes: '🔍 Cosmetische Staat: A Grade. Lichte oppervlakkige veegjes op de backplate, koelvinnen 100% recht & stofvrij.',
     badge: '🔥 POPULAIR',
     inStock: true,
     warranty: '6 Maanden Garantie',
@@ -245,6 +258,11 @@ export const REFURBISHED_STORE: RefurbishedItem[] = [
     price: 680,
     originalPrice: 1329,
     image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80',
+    galleryImages: [
+      'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80',
+    ],
+    cosmeticNotes: '🔍 Cosmetische Staat: A+ Grade. Scherm krasvrij, zeer lichte gebruikssporen rondom de Lightning poort.',
     badge: '⚡ SNEL LEVERBAAR',
     inStock: true,
     warranty: '6 Maanden Garantie',
@@ -264,6 +282,11 @@ export const REFURBISHED_STORE: RefurbishedItem[] = [
     price: 410,
     originalPrice: 599,
     image: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80',
+    galleryImages: [
+      'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80',
+    ],
+    cosmeticNotes: '🔍 Cosmetische Staat: A Grade. Minimale krasjes op de glanzende zwarte middenstrip van de console.',
     inStock: true,
     warranty: '6 Maanden Garantie',
     features: [
