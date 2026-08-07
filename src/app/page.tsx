@@ -17,7 +17,7 @@ export default function Home() {
 
           <h1 style={{ fontSize: '3.6rem', maxWidth: '980px', margin: '0 auto 24px auto', lineHeight: 1.12, fontWeight: 900 }}>
             Direct <span className="text-gradient-cyan">Cash Voor Je Tech</span>. <br />
-            Geen Marktplaats Gedoe.
+            Geen Gedoe Op Marktplaats.
           </h1>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '720px', margin: '0 auto 40px auto', fontWeight: 500 }}>
