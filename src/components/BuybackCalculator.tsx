@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { CATEGORIES } from '../data/techData';
-import { Laptop, Smartphone, Cpu, Gamepad2, CheckCircle2, DollarSign, ArrowRight, ShieldCheck, MapPin, Truck, RefreshCw, Upload, Phone, Mail, User, AlertCircle, Sparkles, FileText, Package, Battery, Lock, Zap, Banknote, Flame } from 'lucide-react';
+import { Laptop, Smartphone, Cpu, Gamepad2, CheckCircle2, DollarSign, ArrowRight, ShieldCheck, MapPin, Truck, RefreshCw, Upload, Phone, Mail, User, AlertCircle, Sparkles, FileText, Package, Battery, Lock, Zap, Banknote, Flame, XCircle } from 'lucide-react';
 
 export default function BuybackCalculator() {
   const [selectedCatId, setSelectedCatId] = useState<string>('macbook');
@@ -27,7 +27,8 @@ export default function BuybackCalculator() {
 
   // States
   const [isAiVetting, setIsAiVetting] = useState<boolean>(false);
-  const [leadSubmitted, setLeadSubmitted] = useState<boolean>(false);
+  const [leadStatus, setLeadStatus] = useState<'idle' | 'approved' | 'rejected'>('idle');
+  const [rejectReason, setRejectReason] = useState<string>('');
 
   // Active Category & Model
   const activeCategory = CATEGORIES.find((c) => c.id === selectedCatId) || CATEGORIES[0];
@@ -73,20 +74,26 @@ export default function BuybackCalculator() {
       alert('Vul a.u.b. uw naam, e-mailadres en mobiele nummer in voor uw cash uitbetaling.');
       return;
     }
-    if (!isIcloudUnlocked) {
-      alert('Let op: Het apparaat moet 100% afgemeld zijn van iCloud/Google/Find My voor uitbetaling.');
-      return;
-    }
-    if (photosCount < 3) {
-      alert('Upload a.u.b. minimaal 3 foto\'s (Voorkant, Achterkant, Serienummer/Schade) voor AI keuring.');
-      return;
-    }
 
     setIsAiVetting(true);
+
     setTimeout(() => {
       setIsAiVetting(false);
-      setLeadSubmitted(true);
-    }, 1500);
+
+      // AI Vetting Criteria Evaluation
+      if (!isIcloudUnlocked) {
+        setRejectReason('Apparaat staat nog als ingelogd geregistreerd. Voor uitbetaling dient het apparaat 100% afgemeld te zijn van iCloud / Google / Find My.');
+        setLeadStatus('rejected');
+      } else if (photosCount < 3) {
+        setRejectReason('Onvoldoende foto\'s geüpload. Er zijn minimaal 3 duidelijke foto\'s vereist voor AI-inspectie.');
+        setLeadStatus('rejected');
+      } else if (condition === 'flawed' && estimatedCashOffer < 50) {
+        setRejectReason('De marktwaarde van dit specifieke onderdeel met schade valt buiten onze actieve cash inkoopcriteria.');
+        setLeadStatus('rejected');
+      } else {
+        setLeadStatus('approved');
+      }
+    }, 1600);
   };
 
   return (
@@ -222,7 +229,7 @@ export default function BuybackCalculator() {
           </div>
         </div>
 
-        {/* Step 3: Vetting Checklist (Receipt, Box, Charger, Battery, iCloud) */}
+        {/* Step 3: Vetting Checklist */}
         <div style={{ marginBottom: '28px' }}>
           <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 900, color: '#dc2626', textTransform: 'uppercase', marginBottom: '12px' }}>
             3. Extra Cash Bonussen & Staat
@@ -385,7 +392,7 @@ export default function BuybackCalculator() {
           </div>
         </div>
 
-        {/* Big Money Cash Offer Display Box */}
+        {/* Cash Offer Display Box */}
         <div style={{ padding: '28px', textAlign: 'center', background: '#f0fdf4', border: '3px solid #16a34a', borderRadius: '20px', marginBottom: '28px', boxShadow: '0 10px 30px rgba(22,163,74,0.15)' }}>
           <div style={{ fontSize: '0.85rem', color: '#16a34a', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 900 }}>
             💰 JOUW GEGARANDEERDE CASH UITBETALING VANDAAG:
@@ -456,33 +463,67 @@ export default function BuybackCalculator() {
           </div>
         </div>
 
-        {/* Submit Lead Button */}
-        {!leadSubmitted ? (
+        {/* Submit Lead Button & Vetting Result Feedback */}
+        {leadStatus === 'idle' && (
           <button
             type="submit"
             disabled={isAiVetting}
             className="btn btn-red"
             style={{ width: '100%', padding: '20px', fontSize: '1.15rem' }}
           >
-            {isAiVetting ? '🤖 AI Keuring & Cash Berekenen...' : '💶 CLAIM JE CASH BOD & ONTVANG GELD ➔'}
+            {isAiVetting ? '🤖 AI Keuring & Analyse Uitvoeren...' : '💶 CLAIM JE CASH BOD & ONTVANG GELD ➔'}
           </button>
-        ) : (
-          <div style={{ padding: '30px', background: '#f0fdf4', border: '3px solid #16a34a', borderRadius: '20px', textAlign: 'center' }}>
-            <CheckCircle2 size={48} color="#16a34a" style={{ margin: '0 auto 12px auto' }} />
-            <h3 style={{ fontSize: '1.5rem', color: '#0f172a', marginBottom: '8px', fontWeight: 900 }}>Aanvraag & Foto's Succesvol Ontvangen!</h3>
-            <p style={{ color: '#334155', fontSize: '0.98rem', marginBottom: '18px', fontWeight: 600 }}>
-              Bedankt, <strong>{fullName}</strong>. Onze specialist bekijkt je foto's ({photosCount} stuks). Als alles klopt, <strong>bellen of WhatsAppen wij je op {phone}</strong> binnen 15 minuten voor akkoord op je <strong>€ {estimatedCashOffer},- cash</strong>!
+        )}
+
+        {/* Status Screen 1: APPROVED VETTING */}
+        {leadStatus === 'approved' && (
+          <div style={{ padding: '32px', background: '#f0fdf4', border: '3px solid #16a34a', borderRadius: '20px', textAlign: 'center' }}>
+            <div className="badge badge-cash" style={{ marginBottom: '12px', fontSize: '0.85rem' }}>
+              ✅ AI KEURING GOEDGEKEURD
+            </div>
+            <CheckCircle2 size={52} color="#16a34a" style={{ margin: '0 auto 12px auto' }} />
+            <h3 style={{ fontSize: '1.7rem', color: '#0f172a', marginBottom: '8px', fontWeight: 900 }}>Gefeliciteerd, {fullName}!</h3>
+            <p style={{ color: '#334155', fontSize: '1.02rem', marginBottom: '20px', fontWeight: 600, maxWidth: '640px', margin: '0 auto 20px auto' }}>
+              Uw aanvraag voor <strong>{activeModel.name} (€ {estimatedCashOffer},- Cash)</strong> is door de eerste AI-keuring goedgekeurd. Onze specialist bekijkt uw {photosCount} foto's en <strong>zoekt persoonlijk telefonisch / via WhatsApp contact op {phone}</strong> binnen 15 minuten voor de definitieve afhaalafspraak in Eindhoven!
             </p>
             <button
               type="button"
               onClick={() => {
-                setLeadSubmitted(false);
+                setLeadStatus('idle');
                 setPhotosCount(0);
               }}
               className="btn btn-secondary"
-              style={{ padding: '10px 20px', fontSize: '0.88rem' }}
+              style={{ padding: '10px 22px', fontSize: '0.9rem' }}
             >
-              <RefreshCw size={14} /> Nog een Apparaat Aanmelden
+              <RefreshCw size={16} /> Nog Een Apparaat Aanmelden
+            </button>
+          </div>
+        )}
+
+        {/* Status Screen 2: REJECTED / NOT APPROVED VETTING */}
+        {leadStatus === 'rejected' && (
+          <div style={{ padding: '32px', background: '#fef2f2', border: '3px solid #dc2626', borderRadius: '20px', textAlign: 'center' }}>
+            <div style={{ background: '#dc2626', color: '#fff', padding: '6px 14px', borderRadius: '999px', fontSize: '0.82rem', fontWeight: 900, display: 'inline-block', marginBottom: '12px' }}>
+              ⚠️ AANVRAAG NIET GOEDGEKEURD
+            </div>
+            <XCircle size={52} color="#dc2626" style={{ margin: '0 auto 12px auto' }} />
+            <h3 style={{ fontSize: '1.6rem', color: '#0f172a', marginBottom: '8px', fontWeight: 900 }}>Aanvraag Niet Voldoen Aan Inkoopcriteria</h3>
+            <p style={{ color: '#991b1b', fontSize: '0.98rem', marginBottom: '16px', fontWeight: 700, maxWidth: '640px', margin: '0 auto 16px auto' }}>
+              {rejectReason}
+            </p>
+            <p style={{ color: '#475569', fontSize: '0.92rem', marginBottom: '20px', fontWeight: 600, maxWidth: '640px', margin: '0 auto 20px auto' }}>
+              Uw account en gegevens (<strong>{email}</strong>) blijven gewoon actief in ons systeem. Heeft u andere apparaten (bijv. MacBooks, iPhones, videokaarten of consoles)? Probeer het gerust opnieuw met een ander apparaat!
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setLeadStatus('idle');
+                setPhotosCount(0);
+              }}
+              className="btn btn-red"
+              style={{ padding: '12px 24px', fontSize: '0.92rem' }}
+            >
+              <RefreshCw size={16} /> Ander Apparaat Aanmelden
             </button>
           </div>
         )}
