@@ -1,90 +1,88 @@
 import Link from 'next/link';
 import BuybackCalculator from '@/components/BuybackCalculator';
 import StoreCatalog from '@/components/StoreCatalog';
-import { ShieldCheck, Zap, ArrowRight, CheckCircle, MapPin, Truck, Award, DollarSign, Sparkles, Laptop, Cpu, Smartphone, Gamepad2 } from 'lucide-react';
+import { ShieldCheck, Zap, ArrowRight, CheckCircle, MapPin, Truck, Award, DollarSign, Sparkles, Laptop, Cpu, Smartphone, Gamepad2, Banknote, Flame, Tag } from 'lucide-react';
 
 export default function Home() {
   return (
     <main style={{ position: 'relative' }}>
-      <div className="grid-overlay" />
-
-      {/* Hero Section with Interactive Visual Depth */}
-      <section style={{ padding: '90px 0 70px 0', textAlign: 'center', position: 'relative' }}>
+      {/* Hero Section - High Conversion Commercial Money Theme */}
+      <section style={{ padding: '60px 0 50px 0', textAlign: 'center', background: 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
-          <div className="badge badge-cyan" style={{ marginBottom: '20px' }}>
-            <Sparkles size={14} /> #1 High-Tech Inkoop & Refurbished Platform
+          <div className="badge badge-red" style={{ marginBottom: '18px' }}>
+            <Flame size={14} /> SNELSTE CASH UITBETALING VAN EINDHOVEN
           </div>
 
-          <h1 style={{ fontSize: '3.6rem', maxWidth: '980px', margin: '0 auto 24px auto', lineHeight: 1.12, fontWeight: 900 }}>
-            Direct <span className="text-gradient-cyan">Cash Voor Je Tech</span>. <br />
-            Geen Gedoe Op Marktplaats.
+          <h1 style={{ fontSize: '3.6rem', maxWidth: '1000px', margin: '0 auto 20px auto', lineHeight: 1.1, fontWeight: 900, color: '#0f172a', letterSpacing: '-0.03em' }}>
+            ONTVANG DIRECT <span style={{ color: '#dc2626' }}>CASH VOOR JE TECH</span>. <br />
+            GEEN GEDOE OP MARKTPLAATS.
           </h1>
 
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '720px', margin: '0 auto 40px auto', fontWeight: 500 }}>
-            Verkoop je gebruikte MacBook Pro, iPhone, NVIDIA RTX videokaart of PlayStation 5 direct voor contant geld in Eindhoven. Of koop gecertificeerd geteste apparatuur met 6 maanden garantie!
+          <p style={{ color: '#475569', fontSize: '1.25rem', maxWidth: '760px', margin: '0 auto 36px auto', fontWeight: 600 }}>
+            Verkoop je gebruikte MacBook, iPhone, videokaart of spelcomputer in 60 seconden online. <br />
+            <strong>Binnen 1 uur geld op je bankrekening of contant in hand in Eindhoven!</strong>
           </p>
 
-          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px' }}>
-            <Link href="/verkopen" className="btn btn-primary">
-              <DollarSign size={20} /> Direct Bod Aanvragen
+          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '46px' }}>
+            <Link href="/verkopen" className="btn btn-red">
+              <Banknote size={22} /> 💶 CLAIM JE CASH BOD
             </Link>
             <Link href="/winkel" className="btn btn-secondary">
-              Bekijk Refurbished Shop <ArrowRight size={18} />
+              <Tag size={20} color="#dc2626" /> Bekijk Opruiming Deals (-50%) <ArrowRight size={18} />
             </Link>
           </div>
 
-          {/* 3D Floating Tech Badges Visual Grid */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '50px' }}>
+          {/* Money Valuation Floating Ticker Badges */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '40px' }}>
             {[
-              { icon: <Laptop size={18} color="var(--cyan)" />, title: 'MacBook Pro M3 Pro', val: 'Direct Cash € 1.450,-' },
-              { icon: <Cpu size={18} color="var(--green)" />, title: 'NVIDIA RTX 4090 24GB', val: 'Direct Cash € 1.400,-' },
-              { icon: <Smartphone size={18} color="var(--cyan)" />, title: 'iPhone 15 Pro Max', val: 'Direct Cash € 850,-' },
-              { icon: <Gamepad2 size={18} color="var(--green)" />, title: 'PlayStation 5 Slim', val: 'Direct Cash € 380,-' },
+              { title: 'MacBook Pro M3 Pro', val: '💰 Direct € 1.450,- Cash' },
+              { title: 'NVIDIA RTX 4090 24GB', val: '💰 Direct € 1.400,- Cash' },
+              { title: 'iPhone 15 Pro Max', val: '💰 Direct € 850,- Cash' },
+              { title: 'PlayStation 5 Slim', val: '💰 Direct € 380,- Cash' },
             ].map((chip, idx) => (
               <div
                 key={idx}
-                className="glass-panel floating-chip"
+                className="commercial-card commercial-card-hover"
                 style={{
                   padding: '12px 20px',
-                  borderRadius: '16px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
-                  animationDelay: `${idx * 0.4}s`,
+                  gap: '10px',
+                  background: '#ffffff',
+                  border: '2px solid #fee2e2',
                 }}
               >
-                {chip.icon}
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 800 }}>{chip.title}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--green)', fontWeight: 700 }}>{chip.val}</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a' }}>{chip.title}</div>
+                  <div style={{ fontSize: '0.82rem', color: '#dc2626', fontWeight: 900 }}>{chip.val}</div>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Key Trust Stats Bar */}
-          <div className="glass-panel" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '24px', maxWidth: '900px', margin: '0 auto', flexWrap: 'wrap', gap: '20px' }}>
+          <div className="commercial-card" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '20px 30px', maxWidth: '920px', margin: '0 auto', flexWrap: 'wrap', gap: '20px', background: '#ffffff', border: '2px solid #e2e8f0' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <ShieldCheck size={24} color="var(--green)" />
+              <Banknote size={28} color="#16a34a" />
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 800 }}>DOR Geverifieerd</div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>100% Eerlijke Inkoop (Anti-Heling)</div>
+                <div style={{ fontSize: '0.92rem', fontWeight: 900, color: '#0f172a' }}>Direct Geld In Hand</div>
+                <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>Contant of Tikkie / iDEAL</div>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <Zap size={24} color="var(--cyan)" />
+              <ShieldCheck size={28} color="#dc2626" />
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 800 }}>Uitbetaling Binnen 1 Uur</div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Contant of Tikkie / iDEAL</div>
+                <div style={{ fontSize: '0.92rem', fontWeight: 900, color: '#0f172a' }}>DOR Eerlijke Inkoop</div>
+                <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>100% Legitiem & Anti-Heling</div>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <Award size={24} color="var(--green)" />
+              <Award size={28} color="#16a34a" />
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 800 }}>6 Maanden Garantie</div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Op Alle Webshop Producten</div>
+                <div style={{ fontSize: '0.92rem', fontWeight: 900, color: '#0f172a' }}>6 Maanden Garantie</div>
+                <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>Op Alle Webshop Producten</div>
               </div>
             </div>
           </div>
@@ -92,50 +90,50 @@ export default function Home() {
       </section>
 
       {/* Interactive Buyback Calculator Section */}
-      <section style={{ padding: '40px 0 90px 0' }}>
+      <section style={{ padding: '60px 0 80px 0' }}>
         <div className="container">
           <BuybackCalculator />
         </div>
       </section>
 
       {/* 3-Step Process Infographic Section */}
-      <section style={{ padding: '80px 0', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid var(--border-glass-subtle)', borderBottom: '1px solid var(--border-glass-subtle)' }}>
+      <section style={{ padding: '70px 0', background: '#ffffff', borderTop: '2px solid #e2e8f0', borderBottom: '2px solid #e2e8f0' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <p style={{ color: 'var(--cyan)', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              Snelle 3-Stappen Workflow
+          <div style={{ textAlign: 'center', marginBottom: '46px' }}>
+            <p style={{ color: '#dc2626', fontSize: '0.88rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              Eenvoudig Geld Verdienen
             </p>
-            <h2 style={{ fontSize: '2.4rem' }}>Hoe Werkt TechCash Eindhoven?</h2>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 900, color: '#0f172a' }}>Hoe Krijg Je Vandaag Cash?</h2>
           </div>
 
           <div className="grid-3">
-            <div className="glass-panel glass-panel-hover" style={{ padding: '36px', textAlign: 'center' }}>
-              <div style={{ width: '64px', height: '64px', borderRadius: '20px', background: 'rgba(59, 224, 247, 0.15)', color: 'var(--cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '1.6rem', fontWeight: 900, border: '1px solid var(--border-glass)' }}>
+            <div className="commercial-card commercial-card-hover" style={{ padding: '36px', textAlign: 'center' }}>
+              <div style={{ width: '64px', height: '64px', borderRadius: '20px', background: '#fee2e2', color: '#dc2626', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '1.6rem', fontWeight: 900 }}>
                 1
               </div>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '12px' }}>Bereken Je Bod</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-                Selecteer je model, specificaties en upload foto's. Onze AI analyseert de marktwaarde en berekent je gegarandeerde cash uitbetaling.
+              <h3 style={{ fontSize: '1.3rem', marginBottom: '12px', fontWeight: 900 }}>Bereken Je Cash Bod</h3>
+              <p style={{ color: '#475569', fontSize: '0.95rem', fontWeight: 500 }}>
+                Selecteer je model en upload foto's. Onze AI rekent direct de hoogste marktwaarde uit voor jouw apparaat.
               </p>
             </div>
 
-            <div className="glass-panel glass-panel-hover" style={{ padding: '36px', textAlign: 'center' }}>
-              <div style={{ width: '64px', height: '64px', borderRadius: '20px', background: 'rgba(16, 185, 129, 0.15)', color: 'var(--green)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '1.6rem', fontWeight: 900, border: '1px solid rgba(16,185,129,0.3)' }}>
+            <div className="commercial-card commercial-card-hover" style={{ padding: '36px', textAlign: 'center' }}>
+              <div style={{ width: '64px', height: '64px', borderRadius: '20px', background: '#dcfce7', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '1.6rem', fontWeight: 900 }}>
                 2
               </div>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '12px' }}>Telefonisch Akkoord</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-                Onze specialist bekijkt je aanvraag en bel/WhatsAppt je binnen 15 minuten voor een definitief bod en overdrachtsafspraak in Eindhoven.
+              <h3 style={{ fontSize: '1.3rem', marginBottom: '12px', fontWeight: 900 }}>Telefonisch Akkoord</h3>
+              <p style={{ color: '#475569', fontSize: '0.95rem', fontWeight: 500 }}>
+                Onze inkoop-specialist bekijkt je aanvraag en belt/WhatsAppt je binnen 15 minuten voor akkoord op je cash bedrag.
               </p>
             </div>
 
-            <div className="glass-panel glass-panel-hover" style={{ padding: '36px', textAlign: 'center' }}>
-              <div style={{ width: '64px', height: '64px', borderRadius: '20px', background: 'rgba(59, 224, 247, 0.15)', color: 'var(--cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '1.6rem', fontWeight: 900, border: '1px solid var(--border-glass)' }}>
+            <div className="commercial-card commercial-card-hover" style={{ padding: '36px', textAlign: 'center' }}>
+              <div style={{ width: '64px', height: '64px', borderRadius: '20px', background: '#fee2e2', color: '#dc2626', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '1.6rem', fontWeight: 900 }}>
                 3
               </div>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '12px' }}>Direct Cash Ontvangen</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-                Lever je apparaat af bij ons trefpunt in Eindhoven (Station / TU/e / Strijp-S) of stuur gratis op via PostNL. Cash of Tikkie direct uitbetaald!
+              <h3 style={{ fontSize: '1.3rem', marginBottom: '12px', fontWeight: 900 }}>Ontvang Direct Geld</h3>
+              <p style={{ color: '#475569', fontSize: '0.95rem', fontWeight: 500 }}>
+                Lever je apparaat af in Eindhoven (Station / TU/e / Strijp-S) of stuur gratis op. Je krijgt direct contant geld of iDEAL!
               </p>
             </div>
           </div>
@@ -143,15 +141,15 @@ export default function Home() {
       </section>
 
       {/* Refurbished Store Showcase Section */}
-      <section style={{ padding: '90px 0' }}>
+      <section style={{ padding: '80px 0' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <div className="badge badge-green" style={{ marginBottom: '14px' }}>
-              <CheckCircle size={14} /> 100% Gecertificeerd Getest
+          <div style={{ textAlign: 'center', marginBottom: '46px' }}>
+            <div className="badge badge-red" style={{ marginBottom: '14px' }}>
+              <Flame size={14} /> GECERTIFICEERDE OPRUIMING DEALS
             </div>
-            <h2 style={{ fontSize: '2.5rem' }}>Bekijk Onze Refurbished Deals</h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '640px', margin: '0 auto' }}>
-              Koop gecontroleerde tweedehands MacBooks, videokaarten en consoles met 6 maanden garantie en 14-dagen bedenktijd.
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 900, color: '#0f172a' }}>Bespaar Tot 50% Op Refurbished Tech</h2>
+            <p style={{ color: '#475569', fontSize: '1.05rem', maxWidth: '640px', margin: '0 auto', fontWeight: 500 }}>
+              Geteste tweedehands MacBooks, videokaarten en consoles met 6 maanden volledige garantie.
             </p>
           </div>
 
